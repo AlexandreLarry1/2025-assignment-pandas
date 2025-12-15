@@ -28,9 +28,9 @@ def merge_regions_and_departments(regions, departments):
     The columns in the final DataFrame should be:
     ['code_reg', 'name_reg', 'code_dep', 'name_dep']
     """
-    result= pd.merge(regions, departments,
-                     left_on='code', right_on='region_code',
-                     suffixes=('_reg', '_dep'))
+    result = pd.merge(regions, departments,
+                      left_on='code', right_on='region_code',
+                      suffixes=('_reg', '_dep'))
     return result[['code_reg', 'name_reg', 'code_dep', 'name_dep']]
 
 
@@ -98,8 +98,8 @@ def plot_referendum_map(referendum_result_by_regions):
     # Calculer le ratio de 'Choice A' sur les votes exprimés
     referendum_result_by_regions['ratio'] = (
         referendum_result_by_regions['Choice A'] /
-        (referendum_result_by_regions['Choice A'] + referendum_result_by_regions['Choice B'])
-    )
+        (referendum_result_by_regions['Choice A']
+         + referendum_result_by_regions['Choice B']))
 
     # Fusionner les données géographiques avec les résultats du référendum
     merged = regions_geo.merge(
